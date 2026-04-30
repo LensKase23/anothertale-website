@@ -1,115 +1,192 @@
-import { useLocale } from "@/contexts/LocaleContext";
-import { Button, Container, Typography } from "@mui/material";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-
-const INVITE_BOTS = [
-    { id: "999162626036740138", name: "Rawon #1" },
-    { id: "1458722150620856351", name: "Rawon #2" },
-    { id: "1458722316627476603", name: "Rawon #3" },
-    { id: "1458722403755753585", name: "Rawon #4" }
-];
-
-const getInviteUrl = (clientId: string) =>
-    `https://discord.com/oauth2/authorize?client_id=${clientId}&permissions=4855722558221376&scope=bot%20applications.commands`;
+/* eslint-disable react/no-danger */
+const HOME_HTML = `
+<div style="background-color: grey; border-radius: 1vw;padding: 10px 1vw;display: flex;flex-wrap: wrap;">
+    <div class="profile" style="flex: 1 55%; padding: 20px 20px;margin: 2vh 1vw;background: linear-gradient(180deg, rgba(141, 188, 199, 70%), transparent);border-radius: 20px;border: 5px solid rgba(141, 188, 199, 100%);">
+        <div class="title" style="display: flex;flex-wrap: wrap; justify-content: space-between; align-items: center;">
+            <img src="https://mineimatorsimplyu.pages.dev/Misu_Logo.webp" style="width: 50px;margin: 0 1vw;">
+            <hr style="flex: 1; margin: 0; border: #A4CCD9 solid 5px;">
+            <hr style="flex: 0 1%; margin: 0; border: #A4CCD9 solid 20px;border-top: 5px solid transparent;border-bottom: 5px solid transparent;border-right: 5px solid transparent;">
+            <h2 style="letter-spacing: 10px; font-weight: 800;text-align: center; font-size: 44px;flex-basis: 60%;color: #EBFFD8;">WELCOME TO ANOTHER TALE</h2>
+            <hr style="flex: 0 1%; margin: 0; border: #A4CCD9 solid 20px;border-top: 5px solid transparent;border-bottom: 5px solid transparent;border-left: 5px solid transparent;">
+            <hr style="flex: 1; margin: 0; border: #A4CCD9 solid 5px;">
+            <img src="https://communitybuild.netlify.app/images/MB%20CB%20ICON.png" style="width: 50px;margin: 0 1vw;">
+        </div>
+        <div class="line" style="display: flex; margin: 20px 0;">
+            <hr style="flex: 0 1%; margin: 0; border: #A4CCD9 solid 20px;border-top: 5px solid transparent;border-bottom: 5px solid transparent;border-left: 5px solid transparent;">
+            <hr style="flex: 1; margin: 0; border: #A4CCD9 solid 5px;">
+            <hr style="flex: 0 1%; margin: 0; border: #A4CCD9 solid 20px;border-top: 5px solid transparent;border-bottom: 5px solid transparent;border-right: 5px solid transparent;">
+        </div>
+        <div class="kotak row">
+            <div class="col-xs-12 col-sm-4 text-center">
+                <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/105185394_ON2e2Ampdzal0JG.png" style="width: 150px; border-radius: 50vw; margin: auto auto;">
+            </div>
+            <div class="col-xs-12 col-sm-8 ">
+                <h2 style="font-size: 28px;font-weight: 600;color: #EBFFD8;">(Lens)Kase</h2>
+                <p style="font-size: 17px;color: #EBFFD8;">Greetings, i'm LensKase, but you can call me Lens. I'm a Freelance 3d Animator (only minecraft for now) and a Web Developer. I'm might not very active, but i'll try to respond as fast as possible.</p>
+            </div>
+        </div>
+        <h4 style="letter-spacing: 0.125cm;font-size: 28px; text-align: center;margin: 20px 0;color: #EBFFD8;">Male/He/Him || 19y/o || 9 July</h4>
+        <h4 style="text-align: center;font-size: 17px; margin: 20px 0;font-weight: 800;color: #EBFFD8;">Indonesian (Main) || English</h4>
+        <ul>
+            <li style="display: inline-flex;align-items: center;border: 5px #C4E1E6 solid; border-radius: 10vw; padding: 5px 10px; margin: 0 0.5vw;">
+                <a href="https://www.instagram.com/LensKase23" style="display: inline-flex;align-items: center;color: #EBFFD8;">
+                    <svg style="margin: 0 0.5vw;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                    </svg><b>Instagram</b>
+                </a>
+            </li>
+            <li style="display: inline-flex;align-items: center;border: 5px #C4E1E6 solid; border-radius: 10vw; padding: 5px 10px; margin: 0 0.5vw;">
+                <a href="https://x.com/LensKase23" style="display: inline-flex;align-items: center;color: #EBFFD8;">
+                    <svg style="margin: 0 0.5vw;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                        <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                    </svg><b>Twitter / X</b>
+                </a>
+            </li>
+            <li style="display: inline-flex;align-items: center;border: 5px #C4E1E6 solid; border-radius: 10vw; padding: 5px 10px; margin: 0 0.5vw;">
+                <a href="https://www.youtube.com/LensKase23" style="display: inline-flex;align-items: center;color: #EBFFD8;">
+                    <svg style="margin: 0 0.5vw;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                        <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+                    </svg><b>Youtube</b>
+                </a>
+            </li>
+        </ul>
+        <div class="line" style="display: flex; margin: 20px 0;align-items: center;">
+            <hr style="flex: 0 1%; margin: 0; border: #A4CCD9 solid 20px;border-top: 5px solid transparent;border-bottom: 5px solid transparent;border-right: 20px solid #A4CCD9;">
+            <hr style="flex: 1; margin: 0; border: #A4CCD9 dashed 2px;">
+            <hr style="flex: 0 1%; margin: 0; border: #A4CCD9 solid 20px;border-top: 5px solid transparent;border-bottom: 5px solid transparent;border-left: 20px solid #A4CCD9;">
+        </div>
+        <h4 style="color: #EBFFD8;">Rules</h4>
+        <p><ol>
+            <li style="color: #EBFFD8;">All Characters are not for sale, but you may use it as a reference.</li>
+            <li style="color: #EBFFD8;">Please use either of the two languages, or I will not respond</li>
+            <li style="color: #EBFFD8;">Any Feedback and Adviced will be very helpful, so that I can develop something better.</li>
+            <li style="color: #EBFFD8;">The HTML codes are free to use, but you might have to search it</li>
+            <li style="color: #EBFFD8;">Do not use all the works for AI</li>
+            <li style="color: #EBFFD8;">Ping me if you have Fanarts of my Ocs, I wanted to see :3</li>
+        </ol></p>
+        <ul class="nav" style="display: inline-flex; justify-content: space-evenly;width: 100%; flex-wrap: wrap; margin-top: 15px;">
+            <li style="list-style: none;"><a style="background-color: #EBFFD8;color: #276574; padding: 5px 2vw; border-radius: 50vw;" data-toggle="tab" href="#profile" >Overview</a></li>
+            <li style="list-style: none;"><a style="background-color: #EBFFD8;color: #276574; padding: 5px 2vw; border-radius: 50vw;" data-toggle="tab" href="#aboutme" >About Me</a></li>
+            <li class="active" style="list-style: none;"><a style="background-color: #EBFFD8;color: #276574; padding: 5px 2vw; border-radius: 50vw;" data-toggle="tab" href="#ocs" >Characters</a></li>
+        </ul>
+    </div>
+    <div class="tab-content" style="flex: 1;flex-basis: 0;min-width: 256px;background: linear-gradient(0deg, rgba(141, 188, 199, 40%), rgba(26, 42, 128, 80%)); margin: 2vh 1vw;padding: 20px 20px 20px 0px;border-radius: 20px;color: #B2B0E8;border: #3B38A0 5px solid;">
+        <div id="profile" class="tab-pane" style="margin-left: 2vw;height: 100%;">
+            <div class="kotak" style="height: 100%; display: flex;">
+                <div class="line" style="height: 100%;width: 10px; background-color: #1A2A80; margin-right: 1vw;"></div>
+                <div class="content" style="width: 100%;display: flex;flex-direction: column;">
+                    <h3 style="font-size: 44px;color: transparent#B2B0E8;">Overview</h3>
+                    <ul style="padding: 0;flex-grow: 1;">
+                        <li style="display: flex;flex-wrap: wrap;align-items: center;">
+                            <p style="margin: 0;font-size: 17px;">Commission ></p>
+                            <hr style="flex: 1; margin: 0;border: 1px dashed #A4CCD9;">
+                            <p style="margin: 0;font-size: 17px;">< Open</p>
+                        </li>
+                        <li style="display: flex;flex-wrap: wrap;align-items: center;">
+                            <p style="margin: 0;font-size: 17px;">Another Tale ></p>
+                            <hr style="flex: 1; margin: 0;border: 1px dashed #A4CCD9;">
+                            <p style="margin: 0;font-size: 17px;">< Progressing</p>
+                        </li>
+                        <li style="display: flex;flex-wrap: wrap;align-items: center;">
+                            <p style="margin: 0;font-size: 17px;">Otherworldly Cafe ></p>
+                            <hr style="flex: 1; margin: 0;border: 1px dashed #A4CCD9;">
+                            <p style="margin: 0;font-size: 17px;">< Progressing</p>
+                        </li>
+                        <li style="display: flex;flex-wrap: wrap;align-items: center;">
+                            <p style="margin: 0;font-size: 17px;">The Mafias ></p>
+                            <hr style="flex: 1; margin: 0;border: 1px dashed #A4CCD9;">
+                            <p style="margin: 0;font-size: 17px;">< Progressing</p>
+                        </li>
+                        <li style="display: flex;flex-wrap: wrap;align-items: center;">
+                            <p style="margin: 0;font-size: 17px;">Character Lore ></p>
+                            <hr style="flex: 1; margin: 0;border: 1px dashed #A4CCD9;">
+                            <p style="margin: 0;font-size: 17px;">< Progressing</p>
+                        </li>
+                    </ul>
+                    <h3 style="font-size: 44px;">Skills</h3>
+                    <ul style="padding: 0; color: #EBFFD8;">
+                        <li style="align-items: center;">
+                            <p style="margin: 0;font-size: 17px;">HTML</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 50%; background-color: #8DBCC7;"></div>
+                            </div>
+                        </li>
+                        <li style="align-items: center;">
+                            <p style="margin: 0;font-size: 17px;">CSS</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="background-color: #8DBCC7; width: 80%;"></div>
+                            </div>
+                        </li>
+                        <li style="align-items: center;">
+                            <p style="margin: 0;font-size: 17px;">Animation</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 95%; background-color: #8DBCC7;"></div>
+                            </div>
+                        </li>
+                        <li style="align-items: center;">
+                            <p style="margin: 0;font-size: 17px;">Modelling</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 75%;background-color: #8DBCC7;"></div>
+                            </div>
+                        </li>
+                        <li style="align-items: center;">
+                            <p style="margin: 0;font-size: 17px;">VFX</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 25%;background-color: #8DBCC7;"></div>
+                            </div>
+                        </li>
+                        <li style="align-items: center;">
+                            <p style="margin: 0;font-size: 17px;">Lighting</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 50%;background-color: #8DBCC7;"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="aboutme" class="tab-pane" style="margin-left: 2vw;height: 100%;">
+            <div class="kotak" style="height: 100%; display: flex;">
+                <div class="line" style="height: 100%;width: 1vw; background-color: #1A2A80; margin-right: 1vw;"></div>
+                <div class="content">
+                    <h3 style="font-size: 44px;">About Me</h3>
+                    <div class="line" style="display: flex; margin: 20px 0;align-items: center;">
+                        <hr style="flex: 0 1%; margin: 0; border: #A4CCD9 solid 20px;border-top: 5px solid transparent;border-bottom: 5px solid transparent;border-right: 20px solid #A4CCD9;
+                        border-left: 5px solid transparent;">
+                        <hr style="flex: 1; margin: 0; border: #A4CCD9 dashed 2px;">
+                        <hr style="flex: 0 1%; margin: 0; border: #A4CCD9 solid 20px;border-top: 5px solid transparent;border-bottom: 5px solid transparent;border-left: 20px solid #A4CCD9;
+                        border-right: 5px solid transparent;">
+                    </div>
+                    <p style="color: lavender;">yeah, about me huh. Codename LensKase but you can call me Lens, 3d Animator for minecraft and Web Developer as a FrontEnd.The software i used to animate is Mine-Imator and for the model i'm using Modelbench, since my laptop can't handle blender to do some animation(at least for now) maybe i learn blockbench too for modelling too. I was also a member of Bhibirds Studio and a crew for a series called "The Alignment". The Framework i use as FrontEnd Web Developer was SolidJS and ReactJS. The reason i wanted to make Toyhouse is to make Lore for my Ocs, so that my Main Project Story will only focusing Character Development, the Relationship and the Main Objective. And might be sharing some of my work</p>
+                </div>
+            </div>
+        </div>
+        <div id="ocs" class="tab-pane active" style="margin-left: 2vw;height: 100%;">
+            <div class="kotak" style="height: 100%; display: flex;">
+                <div class="line" style="height: 100%;width: 1vw; background-color: #1A2A80; margin-right: 1vw;"></div>
+                <div class="content">
+                    <h3 style="padding: 0 2vw;text-align: center;">Characters</h3>
+                    <div class="content" style="display: inline-flex;flex-wrap: wrap;overflow-y: auto;justify-content: center;">
+                        <a href="" style="margin: 0 10px; text-align: center; display: flex; flex-direction: column;">
+                            <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/105286145_Xs5FF9qvh7zpgRB.png" style="width: 125px; border-radius: 50vw;">
+                            Miotro
+                        </a>
+                        <a href="" style="margin: 0 10px; text-align: center; display: flex; flex-direction: column;">
+                            <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/105286117_NaGqHH1Dm23SvWA.png" style="width: 125px; border-radius: 50vw;">
+                            Valt
+                        </a>
+                        <a href="" style="margin: 0 10px; text-align: center; display: flex; flex-direction: column;">
+                            <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/105286184_mdsdw2kcrWwzscz.png" style="width: 125px; border-radius: 50vw;">
+                            Jessica
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+`;
 
 export default function HomePage() {
-    const { t } = useLocale();
-
-    return (
-        <>
-            <Container fixed className="flex min-h-[calc(100vh-5rem)] w-full flex-col items-center justify-center px-4 py-8 pt-20 sm:px-5">
-                <div className="flex w-full max-w-2xl flex-col items-center justify-center gap-6 sm:gap-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="flex w-full flex-col items-center gap-4"
-                    >
-                        <div className="relative aspect-square h-auto w-40 sm:w-56">
-                            <Image
-                                src="/icons/icon-512x512.png"
-                                fill
-                                alt="rawon.jpg"
-                                priority
-                            />
-                        </div>
-                        <div className="flex w-full flex-col gap-4 px-4">
-                            <Typography className="text-center font-sans text-2xl font-medium uppercase text-third sm:text-3xl">
-                                {t.home.title}
-                            </Typography>
-                            <Typography className="text-center font-sans text-base font-medium text-third sm:text-xl">
-                                {t.home.description}
-                            </Typography>
-                        </div>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="flex w-full max-w-sm flex-col items-center gap-4 px-4 sm:px-0"
-                    >
-                        <div className="flex w-full flex-col gap-2">
-                            <Typography className="text-center font-sans text-base font-semibold uppercase text-third sm:text-lg">
-                                {t.home.inviteBot}
-                            </Typography>
-                            <div className="grid w-full grid-cols-4 gap-2">
-                                {INVITE_BOTS.map((bot, index) => (
-                                    <Link
-                                        key={index}
-                                        href={getInviteUrl(bot.id)}
-                                        passHref
-                                        legacyBehavior
-                                    >
-                                        <a
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="w-full"
-                                        >
-                                            <Button
-                                                id={`inviteButton-${index + 1}`}
-                                                color="inherit"
-                                                className="h-11 w-full rounded-lg bg-secondary px-2 font-sans text-sm font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg sm:text-base"
-                                            >
-                                                #{index + 1}
-                                            </Button>
-                                        </a>
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
-                        <Link
-                            href="https://stegripe.org/discord"
-                            passHref
-                            legacyBehavior
-                        >
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                className="w-full"
-                            >
-                                <Button
-                                    id="supportButton"
-                                    color="inherit"
-                                    className="h-11 w-full rounded-lg border-2 border-solid border-secondary px-6 font-sans text-base font-semibold text-secondary transition-all duration-200 hover:scale-105 hover:bg-secondary hover:text-white sm:text-lg"
-                                >
-                                    {t.home.support}
-                                </Button>
-                            </a>
-                        </Link>
-                        <Link href="/docs/getting-started" className="w-full">
-                            <Button
-                                id="docsButton"
-                                color="inherit"
-                                className="h-11 w-full rounded-lg border-2 border-solid border-third px-6 font-sans text-base font-semibold text-third transition-all duration-200 hover:scale-105 hover:bg-third hover:text-white sm:text-lg"
-                            >
-                                {t.home.viewDocs}
-                            </Button>
-                        </Link>
-                    </motion.div>
-                </div>
-            </Container>
-        </>
-    );
+    return <div dangerouslySetInnerHTML={{ __html: HOME_HTML }} />;
 }
