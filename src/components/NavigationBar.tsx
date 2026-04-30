@@ -315,7 +315,7 @@ export const NavigationBar = () => {
                     </div>
                 </div>
             </Container>
-            <Drawer
+            {/* <Drawer
                 id="__next"
                 anchor="left"
                 open={isDrawerOpen}
@@ -469,7 +469,7 @@ export const NavigationBar = () => {
                         </div>
                     </div>
                 </Container>
-            </Drawer>
+            </Drawer> */}
         </>
     );
 };
